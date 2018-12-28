@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 class test(object):
-    c = 2
+    self.c = 2
     def __init__(self, c):
         self.a = 2
         self.b = c
