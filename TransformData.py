@@ -12,6 +12,7 @@ def TransformData():
     # print(data[0])
     Database.WriteCsv("moneyold.csv", cu, data)
     print("数据转换完成")
+    con.close()
     
     
 if __name__ == "__main__":
