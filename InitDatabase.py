@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # 初始化数据库，并把旧数据导入数据库
-import pandas as pd
-import Database as db
+# import pandas as pd
+from DataBase import DataBase
 
 #从csv文件中读取数据存入dataform中
 def ReadDataform(filename):
@@ -18,13 +18,11 @@ def ReadData(df):
     
 """建立数据库，并创建两个表，第一个是收入支出表，含有ID，项目时间，项目名称，项目金额，类型ID几列，第二个是项目类型表，含有项目ID和项目名称两列"""
 def InitDatabase(name):
-    con = db.CreateConnection("money.db")
-    cu = db.CreateCursor(con)
+    db = DataBase("money.db")
     createIncome = "CREATE TABLE Income(ID INTEGER PRIMARY KEY, Time DATE, Name NVARCHAR, Amount DECIMAL(7,2), TypeID INTEGER);"
     createType = "CREATE TABLE IncomeType(TypeID INTEGER PRIMARY KEY, TypeName NVARCHAR);"
-    res = db.RunQuery(cu, createIncome)
-    res = db.RunQuery(cu, createType)
-    con.close()
+    db.Execute(createIncome)
+    db.Execute(createType)
     
     
 if __name__ == "__main__":
@@ -37,17 +35,20 @@ if __name__ == "__main__":
     print(Amount)
     print(Type)
     """
-    # InitDatabase("money.db")
-    con = db.CreateConnection("money.db")
-    cu = db.CreateCursor(con)
+    InitDatabase("money.db")
+    # con = db.CreateConnection("money.db")
+    # cu = db.CreateCursor(con)
+    db = DataBase("money.db")
     query = "select name from sqlite_master where type='table'"
-    res = db.RunQuery(cu, query)
+    db.Execute(query)
+    res = db.GetResult()
     print(res)
     query = "PRAGMA table_info(Income)"
-    res = db.RunQuery(cu, query)
+    db.Execute(query)
+    res = db.GetResult()
     print(res)
     query = "PRAGMA table_info(IncomeType)"
-    res = db.RunQuery(cu, query)
+    db.Execute(query)
+    res = db.GetResult()
     print(res)
-    con.close()
     
