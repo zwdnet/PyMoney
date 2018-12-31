@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # 初始化数据库，并把旧数据导入数据库
-# import pandas as pd
+import pandas as pd
 from DataBase import DataBase
 
 #从csv文件中读取数据存入dataform中
@@ -35,9 +35,7 @@ if __name__ == "__main__":
     print(Amount)
     print(Type)
     """
-    InitDatabase("money.db")
-    # con = db.CreateConnection("money.db")
-    # cu = db.CreateCursor(con)
+    # InitDatabase("money.db")
     db = DataBase("money.db")
     query = "select name from sqlite_master where type='table'"
     db.Execute(query)

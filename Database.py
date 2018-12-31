@@ -1,17 +1,26 @@
 # -*- coding:utf-8 -*-
 
 import sqlite3
+import sys
 
-# 数据库处理类 没有调通，暂时放弃
+# 数据库处理类 
 class DataBase(object):
     def __init__(self, Name):
         self.DatabaseName = Name
-        self.con = sqlite3.connect(self.DatabaseName)
-        self.cu = self.con.cursor()
         self.data = None
+        try:
+            self.con = sqlite3.connect(self.DatabaseName)
+            self.cu = self.con.cursor()
+        except sqlite3.Error as e:
+            __logError(e.args[0])
+            sys.exit(1)
         
     def Execute(self, QueryCommand):
-        self.cu.execute(QueryCommand)
+        try:
+            self.cu.execute(QueryCommand)
+        except sqlite3.Error as e:
+            __logError(e.args[0])
+            sys.exit(1)
 
     def GetConnect(self):
         return self.con
@@ -20,12 +29,24 @@ class DataBase(object):
         return self.cu
         
     def GetResult(self):
-        self.data = self.cu.fetchall()
+        try:
+            self.data = self.cu.fetchall()
+        except sqlite3.Error as e:
+            __logError(e.args[0])
+            sys.exit(1)
         return self.data
         
+    #将错误信息写到文件中
+    def __logError(self, info): 
+        fp = open("DatabaseError.txt", w)
+        fp.write(info)
+        fp.close()
+        
     def __del__(self):
-        self.cu.close()
-        self.con.close()
+        if self.cu:
+             self.cu.close()
+        if self.con:
+             self.con.close()
 
 
 if __name__ == "__main__":
