@@ -24,6 +24,40 @@ def InitDatabase(name):
     db.Execute(createIncome)
     db.Execute(createType)
     
+#将csv格式的旧数据读入dataform并进行转换，主要是项目类型，因为有重复，用字典来保存
+#将转换后的数据放入新的(也就是程序要使用的)数据库中
+def ImportDatabase():
+    df = ReadDataform("moneyold.csv")
+    Time, Name, Amount, Type = ReadData(df)
+    #处理type数据
+    TypeID = 0
+    TypeDic = {}
+    for TypeItem in Type:
+        if TypeDic.__contains__(TypeItem) == False:
+            TypeID += 1
+            TypeDic[TypeItem] = TypeID
+    db = DataBase("money.db")
+    #先放项目类型数据库
+    sql = "INSERT INTO IncomeType VALUES( "
+    for TypeItem in TypeDic:
+        insertSQL = sql + str(TypeDic[TypeItem]) + " , \"" + TypeItem + "\");"
+        db.Execute(insertSQL)
+    # 再放收入支出表
+    sql = "INSERT INTO INCOME VALUES ( "
+    ID = 0
+    for item in Time:
+        time = Time[ID]
+        name = Name[ID]
+        amount = Amount[ID]
+        typeID = TypeDic[Type[ID]]
+        ID += 1
+        insertSQL = sql + str(ID) + " , " + str(time) + " , \"" + name + "\" , " + str(amount) + " , " + str(typeID) + ");"
+        db.Execute(insertSQL)
+    # sql = "select * from Income"
+    # db.Execute(sql)
+    # res = db.GetResult()
+    # print(res)
+    
     
 if __name__ == "__main__":
     """
@@ -35,7 +69,8 @@ if __name__ == "__main__":
     print(Amount)
     print(Type)
     """
-    # InitDatabase("money.db")
+    #InitDatabase("money.db")
+    """
     db = DataBase("money.db")
     query = "select name from sqlite_master where type='table'"
     db.Execute(query)
@@ -49,4 +84,6 @@ if __name__ == "__main__":
     db.Execute(query)
     res = db.GetResult()
     print(res)
+    """
+    ImportDatabase()
     
