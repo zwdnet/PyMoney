@@ -4,6 +4,7 @@
 import os
 from functions import *
 
+
 #获取用户输入
 def GetInput():
     errMsg = "输入错误请重新输入，按任意键继续"

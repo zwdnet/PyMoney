@@ -28,9 +28,15 @@ def strjoin():
     s3 = "哈哈哈"
     s = s1 + s2 + s3
     print(s)
+    
+def writefile():
+    f = open("test.txt", "w")
+    f.write("hello")
+    f.close()
         
 if __name__ == "__main__":
      #hello = test("nihao")
      #hello.hello()
      #testdic()
-     strjoin()
+     #strjoin()
+     writefile()

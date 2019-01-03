@@ -12,14 +12,14 @@ class DataBase(object):
             self.con = sqlite3.connect(self.DatabaseName)
             self.cu = self.con.cursor()
         except sqlite3.Error as e:
-            __logError(e.args[0])
+            self.__logError(e.args[0])
             sys.exit(1)
         
     def Execute(self, QueryCommand):
         try:
             self.cu.execute(QueryCommand)
         except sqlite3.Error as e:
-            __logError(e.args[0])
+            self.__logError(e.args[0])
             sys.exit(1)
 
     def GetConnect(self):
@@ -32,17 +32,19 @@ class DataBase(object):
         try:
             self.data = self.cu.fetchall()
         except sqlite3.Error as e:
-            __logError(e.args[0])
+            self.__logError(e.args[0])
             sys.exit(1)
         return self.data
         
     #将错误信息写到文件中
     def __logError(self, info): 
-        fp = open("DatabaseError.txt", w)
+        print("数据库操作有错误，请看日志文件。")
+        fp = open("DatabaseError.txt", "w")
         fp.write(info)
         fp.close()
         
     def __del__(self):
+        self.con.commit()
         if self.cu:
              self.cu.close()
         if self.con:

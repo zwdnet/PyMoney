@@ -53,10 +53,10 @@ def ImportDatabase():
         ID += 1
         insertSQL = sql + str(ID) + " , " + str(time) + " , \"" + name + "\" , " + str(amount) + " , " + str(typeID) + ");"
         db.Execute(insertSQL)
-    # sql = "select * from Income"
-    # db.Execute(sql)
-    # res = db.GetResult()
-    # print(res)
+    sql = "select * from Income"
+    db.Execute(sql)
+    res = db.GetResult()
+    print(res)
     
     
 if __name__ == "__main__":
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     print(Amount)
     print(Type)
     """
-    #InitDatabase("money.db")
+    InitDatabase("money.db")
     """
     db = DataBase("money.db")
     query = "select name from sqlite_master where type='table'"
