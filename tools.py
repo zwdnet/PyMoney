@@ -39,15 +39,27 @@ def ShowType():
     sql = "select TypeID from IncomeType"
     db.Execute(sql)
     TypeID = db.GetResult()
-    i = 1
     for ID in TypeID:
         sql = "select TypeName from IncomeType where TypeID = "
-        sql += str(i)
+        sql += str(ID[0])
         db.Execute(sql)
         typename = db.GetResult()
-        print("类型ID:%d 类型名称:%s\n"%(i, typename))
-        i += 1
+        print("%2d...............%s"%(ID[0], typename[0][0]))
+        
+
+import decimal
+# 将元转化为分，都是整数计算，没有误差
+def Yuan2Fen(money):
+    decimal.getcontext().prec = 2
+    money = 100* decimal.Decimal.from_float(money)
+    return money
     
+  
+# 将分转化为元，用于输出
+def Fen2Yuan(money):
+    decimal.getcontext().prec = 2
+    money = money/decimal.Decimal(100.0)
+    return money
     
     
 if __name__ == "__main__":
@@ -59,5 +71,13 @@ if __name__ == "__main__":
             break
     """
     ShowType()
+    print(Yuan2Fen(3.54))
+    print(0.58)
+    print(Yuan2Fen(0.58))
+    for i in range(100):
+        x = 0.01*i
+        f = Yuan2Fen(x)
+        y = Fen2Yuan(f)
+        print(x, f, y)
             
     

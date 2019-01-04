@@ -2,17 +2,23 @@
 # 初始化数据库，并把旧数据导入数据库
 import pandas as pd
 from DataBase import DataBase
+import tools
+import decimal
 
 #从csv文件中读取数据存入dataform中
 def ReadDataform(filename):
+    pd.set_option("precision", 2)
     df = pd.read_csv(filename)
+    df.round(2)
     return df
     
 #将dataform中的数据读入一个数组中
 def ReadData(df):
     Time = df.Time
     Name = df.Name
+    #下面，要是精确数字
     Amount = df.Amount
+    
     Type = df.TypeName
     return Time, Name, Amount, Type 
     
@@ -48,7 +54,7 @@ def ImportDatabase():
     for item in Time:
         time = Time[ID]
         name = Name[ID]
-        amount = Amount[ID]
+        amount = tools.Yuan2Fen(Amount[ID])
         typeID = TypeDic[Type[ID]]
         ID += 1
         insertSQL = sql + str(ID) + " , " + str(time) + " , \"" + name + "\" , " + str(amount) + " , " + str(typeID) + ");"
