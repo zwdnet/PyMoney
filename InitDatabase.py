@@ -59,10 +59,12 @@ def ImportDatabase():
         ID += 1
         insertSQL = sql + str(ID) + " , " + str(time) + " , \"" + name + "\" , " + str(amount) + " , " + str(typeID) + ");"
         db.Execute(insertSQL)
-    sql = "select * from Income"
+    sql = "select amount from Income"
     db.Execute(sql)
     res = db.GetResult()
-    print(res)
+    for money in res:
+        money = tools.Fen2Yuan(money[0])
+        print(money)
     
     
 if __name__ == "__main__":

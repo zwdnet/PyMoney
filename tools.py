@@ -2,6 +2,7 @@
 
 #一些其它程序需要使用的工具函数
 from DataBase import *
+import re
 
 
 #判断输入的日期是否合法
@@ -45,6 +46,7 @@ def ShowType():
         db.Execute(sql)
         typename = db.GetResult()
         print("%2d...............%s"%(ID[0], typename[0][0]))
+    return len(TypeID)
         
 
 import decimal
@@ -62,6 +64,81 @@ def Fen2Yuan(money):
     return money
     
     
+# 判断字符串是否是数字
+def IsNumber(num):
+    pattern = re.compile(r'^(\-|\+)?\d+(\.\d+)?$')
+    result = pattern.match(num)
+    if result:
+        return True
+    else:
+        return False
+    
+
+#从收入支出项目类型名称中得到项目类型ID
+def GetTypeIDbyName(TypeName):
+    db = DataBase("money.db")
+    sql = "SELECT TypeID FROM IncomeType WHERE TypeName = \""
+    sql += TypeName
+    sql += "\""
+    db.Execute(sql)
+    res = db.GetResult()
+    if res == []:
+        return None
+    else:
+        return res[0][0]
+        
+        
+#从收入支出项目类型ID中得到项目类型名称
+def GetTypeNamebyID(TypeID):
+    db = DataBase("money.db")
+    sql = "SELECT TypeName FROM IncomeType WHERE TypeID = \""
+    sql += str(TypeID)
+    sql += "\""
+    db.Execute(sql)
+    res = db.GetResult()
+    if res == []:
+        return None
+    else:
+        return res[0][0]
+        
+  
+#在项目类型表里增加新的项目
+def SetType(typename):
+    db = DataBase("money.db")
+    sql = "INSERT INTO IncomeType VALUES( "
+    sql += "NULL"
+    sql += " , \""
+    sql += typename
+    sql += "\")"
+    print(sql)
+    db.Execute(sql)
+    
+    
+#在收入支出表里增加新的一项
+def SetValue(time, name, amount, typeid):
+    db = DataBase("money.db")
+    sql = "INSERT INTO INCOME VALUES ("
+    sql += "NULL"
+    sql += " , "
+    sql += str(time)
+    sql += ",\""
+    sql += name
+    sql += "\","
+    sql += str(amount)
+    sql += ","
+    sql += str(typeid)
+    sql += ")"
+    db.Execute(sql)
+    
+    
+#测试插入成功没有
+def testInsert(sql):
+    db = DataBase("money.db")
+    db.Execute(sql)
+    res = db.GetResult()
+    print(res)
+
+    
 if __name__ == "__main__":
     """
     while True:
@@ -69,6 +146,7 @@ if __name__ == "__main__":
         print(JudgeDate(t))
         if t == 0:
             break
+    """
     """
     ShowType()
     print(Yuan2Fen(3.54))
@@ -79,5 +157,18 @@ if __name__ == "__main__":
         f = Yuan2Fen(x)
         y = Fen2Yuan(f)
         print(x, f, y)
+    """
+    #print(IsNumber("-5.65"))
+    #print(IsNumber("6.5"))
+    #print(IsNumber("87"))
+    #print(IsNumber("-5.6ggg"))
+    #name = "工资"
+    #print(GetTypeIDbyName(name))
+    #ID = 87
+    #print(GetTypeNamebyID(ID))
+    #SetType("测试")
+    #SetValue(20180808, "这是一个测试", 658, 57)
+    testInsert("select * from INCOME where TypeID = 57")
+    #testInsert("select * from Income")
             
     

@@ -38,7 +38,7 @@ class DataBase(object):
         
     #将错误信息写到文件中
     def __logError(self, info): 
-        print("数据库操作有错误，请看日志文件。")
+        print("数据库操作有错误，错误信息:%s\n请看日志文件。" % info)
         fp = open("DatabaseError.txt", "w")
         fp.write(info)
         fp.close()

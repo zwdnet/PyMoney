@@ -24,12 +24,25 @@ def InsertData():
         return
     name = input("请输入项目名称:")
     amount = input("请输入项目金额:")
-    if amount.isdecimal() == False:
+    if IsNumber(amount) == False:
         ErrorInform("请输入数字金额")
         return
-    ShowType()
-    typeID = input("请输入项目类型ID:")
-    print(time, name, amount, typeID)
+    maxnum = ShowType()
+    typeID = input("请输入项目类型ID(若新增项目，输0:")
+    if typeID.isdigit() == False or int(typeID) > maxnum:
+        ErrorInform("请输入正确的项目类型ID,插入新的ID请输0")
+        return
+    if int(typeID) == 0:
+        #增加项目的类型
+        typename = input("请输入要增加的项目名称:")
+    else:
+        typename = GetTypeNamebyID(typeID)
+    typeid = GetTypeIDbyName(typename)
+    #print(time, name, amount, typeid, typename)
+    if typeid == None:
+        SetType(typename)
+        typeid = GetTypeIDbyName(typename)
+    SetValue(time, name, amount, typeid)
     input("数据插入完成，按任意键继续。")
     
     
