@@ -46,10 +46,26 @@ def InsertData():
     input("数据插入完成，按任意键继续。")
     
     
+    
 #按项目时间检索数据库
 def SearchByTime():
-    print("SearchByTime")
-    input()
+    os.system("clear")
+    beginTime = input("请输入起始时间:")
+    endTime = input("请输入结束时间:")
+    if beginTime.isdecimal() == False or endTime.isdecimal() == False:
+        ErrorInform("请输入八位数字格式的日期")
+        return
+    if JudgeDate(int(beginTime)) == False or JudgeDate(int(endTime)) == False:
+        ErrorInform("请输入合法的日期19800101-21000101")
+        return
+    if beginTime > endTime:
+        ErrorInform("结束时间要大于等于开始时间。")
+        return
+    sql = "SELECT * FROM Income where Time >= "
+    sql += str(beginTime)
+    sql += " and Time <= "
+    sql += str(endTime)
+    OutputResult(sql)
     
     
 #按项目类型检索数据库

@@ -137,6 +137,17 @@ def testInsert(sql):
     db.Execute(sql)
     res = db.GetResult()
     print(res)
+    
+    
+#输出查询结果
+def OutputResult(sql):
+    db = DataBase("money.db")
+    db.Execute(sql)
+    result = db.GetResult()
+    for item in result:
+        typeName = GetTypeNamebyID(item[4])
+        print("项目ID:%d 项目日期:%d 项目名称:%s 项目金额:%d 项目类型:%s" % (item[0], item[1], item[2], item[3]/100.0, typeName))
+    input("输出查询结果完成，按任意键继续…………")
 
     
 if __name__ == "__main__":
