@@ -53,14 +53,20 @@ import decimal
 # 将元转化为分，都是整数计算，没有误差
 def Yuan2Fen(money):
     decimal.getcontext().prec = 2
-    money = 100* decimal.Decimal.from_float(money)
+    #print(money)
+    money = money*100.0
+    #print(money)
+    money = decimal.Decimal.from_float(money)
+    #print(money)
     return money
     
   
 # 将分转化为元，用于输出
 def Fen2Yuan(money):
-    decimal.getcontext().prec = 2
-    money = money/decimal.Decimal(100.0)
+    money = decimal.Decimal(money)
+    decimal.getcontext().prec = 4
+    hundred = decimal.Decimal("100.00")
+    money =  money/hundred
     return money
     
     
@@ -146,7 +152,8 @@ def OutputResult(sql):
     result = db.GetResult()
     for item in result:
         typeName = GetTypeNamebyID(item[4])
-        print("项目ID:%d 项目日期:%d 项目名称:%s 项目金额:%d 项目类型:%s" % (item[0], item[1], item[2], item[3]/100.0, typeName))
+        amount = Fen2Yuan(item[3])
+        print("项目ID:%d 项目日期:%d 项目名称:%s 项目金额:%.2f 项目类型:%s" % (item[0], item[1], item[2], amount, typeName))
     input("输出查询结果完成，按任意键继续…………")
 
     
@@ -180,6 +187,9 @@ if __name__ == "__main__":
     #SetType("测试")
     #SetValue(20180808, "这是一个测试", 658, 57)
     testInsert("select * from INCOME where TypeID = 57")
+    x = Yuan2Fen(65.25)
+    print(x)
+    print("%.2f" % Fen2Yuan(str(x)))
     #testInsert("select * from Income")
             
     
