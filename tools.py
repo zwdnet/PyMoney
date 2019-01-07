@@ -52,7 +52,7 @@ def ShowType():
 import decimal
 # 将元转化为分，都是整数计算，没有误差
 def Yuan2Fen(money):
-    decimal.getcontext().prec = 2
+    decimal.getcontext().prec = 4
     #print(money)
     money = money*100.0
     #print(money)
@@ -155,6 +155,28 @@ def OutputResult(sql):
         amount = Fen2Yuan(item[3])
         print("项目ID:%d 项目日期:%d 项目名称:%s 项目金额:%.2f 项目类型:%s" % (item[0], item[1], item[2], amount, typeName))
     input("输出查询结果完成，按任意键继续…………")
+
+
+#输入错误时的输出
+def ErrorInform(message):
+    print(message)
+    input("按任意键返回")
+    
+    
+#让用户输入查询的日期范围
+def InputDateRange():
+    beginTime = input("请输入起始时间:")
+    endTime = input("请输入结束时间:")
+    if beginTime.isdecimal() == False or endTime.isdecimal() == False:
+        ErrorInform("请输入八位数字格式的日期")
+        return (0, 0)
+    if JudgeDate(int(beginTime)) == False or JudgeDate(int(endTime)) == False:
+        ErrorInform("请输入合法的日期19800101-21000101")
+        return (0, 0)
+    if beginTime > endTime:
+        ErrorInform("结束时间要大于等于开始时间。")
+        return  (0, 0)
+    return (beginTime, endTime)
 
     
 if __name__ == "__main__":
