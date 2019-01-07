@@ -52,9 +52,9 @@ def ShowType():
 import decimal
 # 将元转化为分，都是整数计算，没有误差
 def Yuan2Fen(money):
-    decimal.getcontext().prec = 4
+    #decimal.getcontext().prec = 4
     #print(money)
-    money = money*100.0
+    money = money*100
     #print(money)
     money = decimal.Decimal.from_float(money)
     #print(money)
@@ -64,7 +64,7 @@ def Yuan2Fen(money):
 # 将分转化为元，用于输出
 def Fen2Yuan(money):
     money = decimal.Decimal(money)
-    decimal.getcontext().prec = 4
+    #decimal.getcontext().prec = 4
     hundred = decimal.Decimal("100.00")
     money =  money/hundred
     return money

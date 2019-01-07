@@ -23,9 +23,9 @@ def InsertData():
         return
     amount = Yuan2Fen(float(amount))
     maxnum = ShowType()
-    typeID = input("请输入项目类型ID(若新增项目，输0:")
+    typeID = input("请输入项目类型ID(若新增项目，输0):")
     if typeID.isdigit() == False or int(typeID) > maxnum:
-        ErrorInform("请输入正确的项目类型ID,插入新的ID请输0)"
+        ErrorInform("请输入正确的项目类型ID,插入新的ID请输0。")
         return
     if int(typeID) == 0:
         #增加项目的类型
