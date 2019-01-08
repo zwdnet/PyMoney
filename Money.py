@@ -43,7 +43,7 @@ if __name__ == "__main__":
         elif choose == 4: #删除项目
             DelData()
         elif choose == 5: #输出现金流量表
-            Statics()
+            Status()
         elif choose == 6: #退出
             print("谢谢使用，再见！")
             break

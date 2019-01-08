@@ -3,6 +3,7 @@
 #功能程序:实现程序的具体功能
 import os
 from tools import *
+import math
 
 
 #插入新的收入支出项目
@@ -94,7 +95,45 @@ def DelData():
     
     
 #输出现金流量表
-def Statics():
-    print("现金流量表")
-    input()
+def Status():
+    os.system("clear")
+    Date = InputDateRange()
+    if Date == (0, 0):
+        return
+    # 计算相关数据
+    TotalIncome = GetSumIncome(Date)
+    TotalExpense = GetSumExpense(Date)
+    Total = GetSum(Date)
+    #print(TotalIncome, TotalExpense, Total)
+    space = "             "
+    line = "------------------"
+    print("从%s到%s的现金流量表为" % (Date[0], Date[1]))
+    print(line)
+    print("总收入=%.2f元，其中" % Fen2Yuan(TotalIncome))
+    #查询分类的收入支出总额
+    sql = "SELECT TypeID from IncomeType"
+    db = DataBase("money.db")
+    db.Execute(sql)
+    result = db.GetResult()
+    for typeID in result:
+        typeName = GetTypeNamebyID(typeID[0])
+        typeSum = GetSumByTypeID(Date, typeID[0])
+        if typeName == None or  typeSum <= 0:
+            pass
+        else:
+            print(space)
+            print("%s = %.2f" % (typeName, Fen2Yuan(typeSum)))
+    print(line)
+    print("总支出=%.2f元，其中" % math.fabs(Fen2Yuan(TotalExpense)))
+    for typeID in result:
+        typeName = GetTypeNamebyID(typeID[0])
+        typeSum = GetSumByTypeID(Date, typeID[0])
+        if typeName == None or  typeSum >= 0:
+            pass
+        else:
+            print(space)
+            print("%s = %.2f" % (typeName, math.fabs(Fen2Yuan(typeSum))))
+    print(line)
+    print("净收入为:%.2f" % Fen2Yuan(Total))
+    input("查询完毕，按任意键继续……")
     

@@ -56,15 +56,19 @@ def ImportDatabase():
         name = Name[ID]
         amount = tools.Yuan2Fen(Amount[ID])
         typeID = TypeDic[Type[ID]]
+        #if typeID == 25:
+         #   print(time, name, amount, Amount[ID])
         ID += 1
         insertSQL = sql + str(ID) + " , " + str(time) + " , \"" + name + "\" , " + str(amount) + " , " + str(typeID) + ");"
         db.Execute(insertSQL)
-    sql = "select amount from Income"
+    '''    
+    sql = "select amount from Income where typeID = 25"
     db.Execute(sql)
     res = db.GetResult()
     for money in res:
         money = tools.Fen2Yuan(money[0])
         print(money)
+    '''
     
     
 if __name__ == "__main__":

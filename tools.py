@@ -54,7 +54,7 @@ import decimal
 def Yuan2Fen(money):
     #decimal.getcontext().prec = 4
     #print(money)
-    money = money*100
+    money = int(money*100.0)
     #print(money)
     money = decimal.Decimal.from_float(money)
     #print(money)
@@ -153,6 +153,7 @@ def OutputResult(sql):
     for item in result:
         typeName = GetTypeNamebyID(item[4])
         amount = Fen2Yuan(item[3])
+        # print(item, item[3], amount)
         print("项目ID:%d 项目日期:%d 项目名称:%s 项目金额:%.2f 项目类型:%s" % (item[0], item[1], item[2], amount, typeName))
     input("输出查询结果完成，按任意键继续…………")
 
@@ -178,6 +179,58 @@ def InputDateRange():
         return  (0, 0)
     return (beginTime, endTime)
 
+
+"""具体求指定日期范围内金额总和的函数。
+根据输入的sql来确定是求总的总和，收入的总和还是支出的总和。"""
+def Sum(sql):
+    db = DataBase("money.db")
+    db.Execute(sql)
+    result = db.GetResult()
+    sum = 0.0
+    for i in result:
+        sum += i[0]
+    return sum
+    
+    
+#获取指定日期范围内的收入总和
+def GetSumIncome(Date):
+    sql = "SELECT Amount FROM Income Where Time >= "
+    sql += str(Date[0])
+    sql += " and Time <= "
+    sql += str(Date[1])
+    sql += " and Amount > 0"
+    return Sum(sql)
+    
+    
+#获取指定日期范围内的支出总额
+def GetSumExpense(Date):
+    sql = "SELECT Amount FROM Income Where Time >= "
+    sql += str(Date[0])
+    sql += " and Time <= "
+    sql += str(Date[1])
+    sql += " and Amount < 0"
+    return Sum(sql)
+    
+    
+#获取指定日期范围内的收入支出总和
+def GetSum(Date):
+    sql = "SELECT Amount FROM Income Where Time >= "
+    sql += str(Date[0])
+    sql += " and Time <= "
+    sql += str(Date[1])
+    return Sum(sql)
+    
+    
+#获取指定日期范围内特定类型ID的收入支出总和
+def GetSumByTypeID(Date, typeID):
+    sql = "SELECT Amount FROM Income Where Time >= "
+    sql += str(Date[0])
+    sql += " and Time <= "
+    sql += str(Date[1])
+    sql += " and TypeID = "
+    sql += str(typeID)
+    return Sum(sql)
+    
     
 if __name__ == "__main__":
     """
@@ -208,10 +261,15 @@ if __name__ == "__main__":
     #print(GetTypeNamebyID(ID))
     #SetType("测试")
     #SetValue(20180808, "这是一个测试", 658, 57)
-    testInsert("select * from INCOME where TypeID = 57")
-    x = Yuan2Fen(65.25)
-    print(x)
-    print("%.2f" % Fen2Yuan(str(x)))
+    #testInsert("select * from INCOME where TypeID = 57")
+    #x = Yuan2Fen(6554.25)
+    #print(x)
+    #print("%.2f" % Fen2Yuan(str(x)))
     #testInsert("select * from Income")
+    #print(Sum("select amount from Income where Time > 20181101 and Time < 20181231"))
+    print(GetSumIncome((20180101, 20181231)))
+    print(GetSumExpense((20180101, 20181231)))
+    print(GetSum((20180101, 20181231)))
+    print(GetSumByTypeID((20180101, 20181231), 1))
             
     
