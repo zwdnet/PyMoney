@@ -10,6 +10,7 @@ import math
 def InsertData():
     #print("insertdata")
     os.system("clear")
+    os.system("clear")
     time = input("请输入项目时间:")
     if time.isdecimal() == False:
         ErrorInform("请输入八位数字格式的日期")

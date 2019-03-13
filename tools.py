@@ -116,7 +116,6 @@ def SetType(typename):
     sql += " , \""
     sql += typename
     sql += "\")"
-    print(sql)
     db.Execute(sql)
     
     
@@ -150,11 +149,14 @@ def OutputResult(sql):
     db = DataBase("money.db")
     db.Execute(sql)
     result = db.GetResult()
+    totalAmount = 0.0
     for item in result:
         typeName = GetTypeNamebyID(item[4])
         amount = Fen2Yuan(item[3])
+        totalAmount += float(amount)
         # print(item, item[3], amount)
         print("项目ID:%d 项目日期:%d 项目名称:%s 项目金额:%.2f 项目类型:%s" % (item[0], item[1], item[2], amount, typeName))
+    print("总额为:%.2f" % totalAmount)
     input("输出查询结果完成，按任意键继续…………")
 
 
