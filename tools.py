@@ -21,16 +21,18 @@ def JudgeDate(time):
         if Day > 31:
             return False
     elif Month == 2:
-        year = time/10000
-        if ((year % 4 == 0 and year % 100 != 0) or (year % 100 == 0 and year % 400 == 0)):
+        year = int(time/10000)
+        bRun = (year % 4 == 0 and year % 100 != 0) or (year % 100 == 0 and year % 400 == 0)
+        # print(year, bRun)
+        if (bRun):
             if Day > 29:
-                return False
+            	return False
         else:
             if Day > 28:
-                return False
+            	return False
     else:
         if Day > 30:
-            return False
+        	return False
     return True
     
     
