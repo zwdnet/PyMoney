@@ -42,12 +42,18 @@ def ShowType():
     sql = "select TypeID from IncomeType"
     db.Execute(sql)
     TypeID = db.GetResult()
+    i = 0
     for ID in TypeID:
         sql = "select TypeName from IncomeType where TypeID = "
         sql += str(ID[0])
         db.Execute(sql)
         typename = db.GetResult()
         print("%2d...............%s"%(ID[0], typename[0][0]))
+        # 新手机上termux不能翻屏了，所以加这个
+        if i == 25:
+            input("按任意键继续……")
+            i = 0
+        i += 1
     return len(TypeID)
         
 
