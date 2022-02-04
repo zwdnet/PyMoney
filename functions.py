@@ -4,6 +4,8 @@
 import os
 from tools import *
 import math
+import pandas as pd
+from scipy import stats
 
 
 #插入新的收入支出项目
@@ -138,3 +140,75 @@ def Status():
     print("净收入为:%.2f" % Fen2Yuan(Total))
     input("查询完毕，按任意键继续……")
     
+    
+# 取得指定日期内的特定项目的总额
+def GetItemTotal(date_start, date_end, typeid):
+    sql = "SELECT * FROM Income where TypeID = "
+    sql += str(typeid)
+    sql += " and Time >= "
+    sql += str(date_start)
+    sql += " and Time <= "
+    sql += str(date_end)
+    # OutputResult(sql)
+    db = DataBase("money.db")
+    db.Execute(sql)
+    result = db.GetResult()
+    totalAmount = 0.0
+    for item in result:
+        # typeName = GetTypeNamebyID(item[4])
+        # amount = Fen2Yuan(item[3])
+        totalAmount += float(item[3])
+    return totalAmount
+    
+
+# 按年输出指定日期范围的个人CPI及收入变动比率
+def CPI():
+    space = "             "
+    line = "------------------"
+    
+    beginYear = input("请输入起始年份:")
+    endYear = input("请输入结束年份:")
+    if beginYear.isdecimal() == False or endYear.isdecimal() == False or len(beginYear) != 4 or len(endYear) != 4:
+        ErrorInform("请输入四位数字格式的年份")
+        return
+    if int(beginYear) >= int(endYear):
+        ErrorInform("起始年份需小于结束年份")
+        return
+    
+    begin = int(beginYear)
+    end = int(endYear)
+    typeid = GetTypeIDbyName("给李娅钱")
+    result = pd.DataFrame()
+    cpis = []
+    years = []
+    incomes = []
+    for year in range(begin+1, end+1):
+        date1_start = str(year-1)+"0101"
+        date1_end = str(year-1)+"1231"
+        date2_start = str(year)+"0101"
+        date2_end = str(year)+"1231"
+        TotalIncome1 = GetSumIncome((date1_start, date1_end))
+        TotalExpense1 = GetSumExpense((date1_start, date1_end))
+        TotalIncome2 = GetSumIncome((date2_start, date2_end))
+        TotalExpense2 = GetSumExpense((date2_start, date2_end))
+        RemoveAmount1 = GetItemTotal(date1_start, date1_end, typeid)
+        RemoveAmount2 = GetItemTotal(date2_start, date2_end, typeid)
+        TotalExpense1 -= RemoveAmount1
+        TotalExpense2 -= RemoveAmount2
+        # 计算数据
+        cpis.append(abs(TotalExpense2)/abs(TotalExpense1) - 1.0)
+        incomes.append(TotalIncome2/TotalIncome1 - 1.0)
+        years.append(year)
+    
+    result["年度"] = years
+    result["通胀率"] = cpis
+    result["收入增长率"] = incomes
+    result.set_index(keys = "年度", inplace = True)
+    print("计算CPI结果")
+    print(result)
+    min_cpi = result.通胀率.min() - 0.01
+    min_income = result.收入增长率.min() - 0.01
+    print("年均通胀率:", stats.gmean(result.通胀率.values - min_cpi) + min_cpi)
+    print("年均收入增长率:", stats.gmean(result.收入增长率.values - min_income) + min_income)
+    print(line)
+    input("查询完毕，按任意键继续……")
