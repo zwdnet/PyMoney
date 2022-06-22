@@ -138,7 +138,61 @@ def Status():
             print("%s = %.2f" % (typeName, math.fabs(Fen2Yuan(typeSum))))
     print(line)
     print("净收入为:%.2f" % Fen2Yuan(Total))
+    print(line)
+    print("税负情况")
+    taxTotal = Tax(Date)
+    print("纳税总额:%.2f元，税负率:%.2f%%" % (math.fabs(Fen2Yuan(taxTotal)), math.fabs(taxTotal/TotalIncome*100.0)))
+    
     input("查询完毕，按任意键继续……")
+    
+    
+# 计算个人税负
+def Tax(Date):
+    # 计算增值税
+    valueAdd6 = "饮食,日常支出,职业发展,通讯,医疗,人际开支,社会活动,婚恋成本,旅行,金融成本,保险,物业费,彩票,学车支出,购房支出,文化消费,学习支出,法律咨询费,用车成本_停车费,用车成本_过路费,用车成本_洗车,用车成本_维修保养,用车成本_代驾,家电维修,用车成本_保险,物业支出,用车成本_咨询费用"
+    valueAdd9 = "交通,水电,房租,书刊消费"
+    valueAdd13 = "日常用品,大额消费,亲情消费,自行车爱好,衣物,家电消费,软件消费,用车成本_油耗,用车成本_其它费用,用车成本_买配件,电子消费"
+    amount6 = getAddAmount(Date, valueAdd6)
+    amount9 = getAddAmount(Date, valueAdd9)
+    amount13 = getAddAmount(Date, valueAdd13) 
+    # 计算增值税
+    addValueTax = amount6*0.06 + amount9*0.09 + amount13*0.13
+    
+    # 计算燃油税，假设油价为9元/升
+    oilPrice = 900
+    typeid = GetTypeIDbyName("用车成本_油耗")
+    oilAmount = -1*GetItemTotal(Date[0], Date[1], typeid)
+    oilVolume = oilAmount/oilPrice
+    oilTax = oilVolume*152
+    # print(oilAmount, oilVolume, oilTax)
+    
+    # 计算城建税和教育附加
+    city_tax = (addValueTax + oilTax)*0.07
+    edu_tax = (addValueTax + oilTax)*0.05
+    
+    # 其它税收，直接按纳税额加起来
+    typeid = GetTypeIDbyName("纳税")
+    other_tax = -1*GetItemTotal(Date[0], Date[1], typeid)
+    typeid = GetTypeIDbyName("用车成本_税收")
+    other_tax += -1*GetItemTotal(Date[0], Date[1], typeid)
+    
+    
+    # 计算总税收
+    allTax = addValueTax + oilTax + city_tax + edu_tax + other_tax
+    # print("测试", addValueTax, oilTax, city_tax, edu_tax, other_tax)
+    # print("纳税总额:", allTax)
+    return allTax
+    
+    
+    
+# 获取不同税率项目的增值税应税总额
+def getAddAmount(Date, valueItems):
+    valueItems = valueItems.split(",")
+    amount = 0.0
+    for item in valueItems:
+        typeid = GetTypeIDbyName(item)
+        amount += GetItemTotal(Date[0], Date[1], typeid)
+    return -1*amount
     
     
 # 取得指定日期内的特定项目的总额
