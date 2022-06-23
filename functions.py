@@ -170,6 +170,9 @@ def Tax(Date):
     city_tax = (addValueTax + oilTax)*0.07
     edu_tax = (addValueTax + oilTax)*0.05
     
+    # 计算企业所得税
+    income_tax = (amount6 + amount9 + amount13)*0.25
+    
     # 其它税收，直接按纳税额加起来
     typeid = GetTypeIDbyName("纳税")
     other_tax = -1*GetItemTotal(Date[0], Date[1], typeid)
@@ -178,7 +181,7 @@ def Tax(Date):
     
     
     # 计算总税收
-    allTax = addValueTax + oilTax + city_tax + edu_tax + other_tax
+    allTax = addValueTax + oilTax + city_tax + edu_tax + income_tax + other_tax
     # print("测试", addValueTax, oilTax, city_tax, edu_tax, other_tax)
     # print("纳税总额:", allTax)
     return allTax
