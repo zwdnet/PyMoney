@@ -82,6 +82,9 @@ def SearchByType():
 def DelData():
     os.system("clear")
     ID = input("即将删除收入支出项目，请输入项目ID，如不知道，请通过软件其它功能查询:")
+    if ID.isdigit() == False or int(ID) <= 0 :
+        ErrorInform("请输入正确的项目类型ID。")
+        return
     sql = "select ID from Income where ID ="
     sql += str(ID)
     db = DataBase("money.db")
