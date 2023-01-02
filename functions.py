@@ -144,7 +144,10 @@ def Status():
     print(line)
     print("税负情况")
     taxTotal = Tax(Date)
-    print("纳税总额:%.2f元，税负率:%.2f%%" % (math.fabs(Fen2Yuan(taxTotal)), math.fabs(taxTotal/TotalIncome*100.0)))
+    if TotalIncome <= 0.0:
+        print("纳税总额:%.2f元，因尚无收入数据，税负暂时无法计算" % (math.fabs(Fen2Yuan(taxTotal))))
+    else:
+        print("纳税总额:%.2f元，税负率:%.2f%%" % (math.fabs(Fen2Yuan(taxTotal)), math.fabs(taxTotal/TotalIncome*100.0)))
     
     input("查询完毕，按任意键继续……")
     
