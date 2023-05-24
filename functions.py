@@ -6,6 +6,7 @@ from tools import *
 import math
 import pandas as pd
 from scipy import stats
+import readline
 
 
 #插入新的收入支出项目

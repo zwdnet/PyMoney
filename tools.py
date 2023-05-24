@@ -3,6 +3,7 @@
 #一些其它程序需要使用的工具函数
 from DataBase import *
 import re
+import readline
 
 
 #判断输入的日期是否合法

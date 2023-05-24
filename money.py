@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 # 真正的主程序
+import readline
 import os
 from functions import *
 
