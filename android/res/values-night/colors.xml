@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 深色配色。名字和 values/colors.xml 一一对应，不能多也不能少：
+         少一个有夜间值的名字，那个位置就会在深色下掉回浅色（白卡片 / 黑字）。 -->
+    <color name="background">#FF121417</color>
+    <color name="card">#FF1C1F23</color>
+    <color name="primary">#FF5FBF95</color>
+    <color name="primary_dark">#FF0F1114</color>
+    <color name="accent">#FF5FBF95</color>
+    <color name="text_primary">#FFE7E9EB</color>
+    <color name="text_secondary">#FF9AA0A6</color>
+    <color name="divider">#FF31363C</color>
+    <color name="income">#FF58C98C</color>
+    <color name="expense">#FFF07A6A</color>
+    <color name="warning">#FFE0B44D</color>
+    <color name="grid_line">#FF31363C</color>
+    <color name="axis_text">#FF9AA0A6</color>
+    <color name="widget_bg">#F21C1F23</color>
+
+    <color name="chart_bg">#FF1C1F23</color>
+    <color name="chart_axis">#FF7A8189</color>
+    <color name="chart_grid">#FF31363C</color>
+    <color name="chart_text">#FFE7E9EB</color>
+    <color name="chart_text_secondary">#FF9AA0A6</color>
+    <color name="chart_text_dim">#FF5F666D</color>
+    <color name="chart_hole">#FF1C1F23</color>
+</resources>

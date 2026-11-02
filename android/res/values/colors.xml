@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#FFF6F7F9</color>
+    <color name="card">#FFFFFFFF</color>
+    <color name="primary">#FF2E7D5B</color>
+    <color name="primary_dark">#FF1F5C43</color>
+    <color name="accent">#FF2E7D5B</color>
+    <color name="text_primary">#FF1C1F22</color>
+    <color name="text_secondary">#FF6B7280</color>
+    <color name="divider">#FFE3E6EA</color>
+    <color name="income">#FF1B7F4B</color>
+    <color name="expense">#FFC0392B</color>
+    <color name="warning">#FFB8860B</color>
+    <color name="grid_line">#FFE3E6EA</color>
+    <color name="axis_text">#FF6B7280</color>
+    <color name="widget_bg">#E6FFFFFF</color>
+
+    <!-- 自绘图表的配色。ChartView 直接把这些值交给 Paint，所以必须走资源：
+         values-night 里有同一套名字的深色版本，切主题时自绘图跟着换。 -->
+    <color name="chart_bg">#FFFFFFFF</color>
+    <color name="chart_axis">#FF9AA0A6</color>
+    <color name="chart_grid">#FFE8EAED</color>
+    <color name="chart_text">#FF1C1F22</color>
+    <color name="chart_text_secondary">#FF6B7280</color>
+    <color name="chart_text_dim">#FFB0B4B9</color>
+    <color name="chart_hole">#FFFFFFFF</color>
+</resources>

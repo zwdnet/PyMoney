@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- ① 状态 -->
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_state_title" />
+
+            <TextView
+                android:id="@+id/sec_state"
+                style="@style/CardBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sec_detail"
+                style="@style/Hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="6dp" />
+        </LinearLayout>
+
+        <!-- ② 开关 -->
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_switch_title" />
+
+            <TextView
+                style="@style/Hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6dp"
+                android:text="@string/sec_switch_hint" />
+
+            <Button
+                android:id="@+id/sec_enable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_enable" />
+
+            <Button
+                android:id="@+id/sec_resume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_resume"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/sec_disable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_disable" />
+        </LinearLayout>
+
+        <!-- ③ 口令：没开启加密时整块藏掉，四个点不动的按钮只会让人以为界面坏了 -->
+        <LinearLayout
+            android:id="@+id/sec_pass_card"
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_pass_title" />
+
+            <TextView
+                style="@style/Hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6dp"
+                android:text="@string/sec_pass_hint" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/sec_unlock"
+                    style="@style/DateButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sec_unlock" />
+
+                <Button
+                    android:id="@+id/sec_lock"
+                    style="@style/DateButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sec_lock" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/sec_change"
+                    style="@style/DateButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sec_change" />
+
+                <Button
+                    android:id="@+id/sec_recovery"
+                    style="@style/DateButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sec_recovery" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ④ 明文副本 -->
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_copy_title" />
+
+            <TextView
+                android:id="@+id/sec_copy_state"
+                style="@style/CardBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/sec_copy_export"
+                    style="@style/DateButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sec_copy_export" />
+
+                <Button
+                    android:id="@+id/sec_copy_delete"
+                    style="@style/DateButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sec_copy_delete" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ⑤ 防不住什么：加密的边界写清楚，别让人以为开了就什么都安全了 -->
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_limits_title" />
+
+            <TextView
+                style="@style/Hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sec_limits" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

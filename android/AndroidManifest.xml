@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pymoney"
+    android:versionCode="9"
+    android:versionName="2.0">
+
+    <!-- 只在 6.0~8.1 上需要老式存储权限，Android 10 以后走 MediaStore 不需要任何权限 -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <uses-sdk
+        android:minSdkVersion="24"
+        android:targetSdkVersion="34" />
+
+    <application
+        android:name="com.pymoney.PyMoneyApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name="com.pymoney.ui.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.pymoney.ui.EditActivity"
+            android:exported="true"
+            android:label="@string/title_edit"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.pymoney.ui.SearchActivity"
+            android:exported="false"
+            android:label="@string/title_search" />
+
+        <activity
+            android:name="com.pymoney.ui.StatusActivity"
+            android:exported="false"
+            android:label="@string/title_status" />
+
+        <activity
+            android:name="com.pymoney.ui.TaxActivity"
+            android:exported="false"
+            android:label="@string/title_tax" />
+
+        <activity
+            android:name="com.pymoney.ui.CpiActivity"
+            android:exported="false"
+            android:label="@string/title_cpi" />
+
+        <activity
+            android:name="com.pymoney.ui.TypeManageActivity"
+            android:exported="false"
+            android:label="@string/title_types" />
+
+        <activity
+            android:name="com.pymoney.ui.ImportExportActivity"
+            android:exported="true"
+            android:label="@string/title_data" />
+
+        <activity
+            android:name="com.pymoney.ui.ChartActivity"
+            android:exported="false"
+            android:label="@string/title_charts" />
+
+        <!-- 锁着也要进得来：看状态、输口令解锁、改口令都在这页 -->
+        <activity
+            android:name="com.pymoney.ui.SecurityActivity"
+            android:exported="false"
+            android:label="@string/title_security" />
+
+        <activity
+            android:name="com.pymoney.ui.AppearanceActivity"
+            android:exported="false"
+            android:label="@string/title_appearance" />
+
+        <receiver
+            android:name="com.pymoney.widget.QuickAddWidget"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/quick_add_widget" />
+        </receiver>
+    </application>
+</manifest>

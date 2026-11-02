@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 同名的 style 在 values-night 里是「整套替换」而不是逐项覆盖，
+         所以这里必须把 AppTheme 的每个 item 都再写一遍。 -->
+    <style name="AppTheme" parent="@android:style/Theme.Material">
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+
+    <style name="SectionTitle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:paddingBottom">6dp</item>
+    </style>
+
+    <style name="CardBody">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+
+    <style name="Hint">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="Card">
+        <item name="android:background">@drawable/card_bg</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="DateButton" parent="@android:style/Widget.Material.Button.Small">
+        <item name="android:textSize">13sp</item>
+    </style>
+</resources>

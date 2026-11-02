@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">记账</string>
+
+    <!-- 首页 -->
+    <string name="month_overview">本月概览</string>
+    <string name="records_count">共 %1$d 条记录，%2$s ~ %3$s</string>
+    <string name="menu_edit">记一笔</string>
+    <string name="menu_tax">税负估算</string>
+    <string name="menu_charts">统计图表</string>
+
+    <!-- 通用 -->
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="err_invalid_date">日期不合法，应为 19800101~21000101 之间的真实日期</string>
+    <string name="err_empty_name">项目名称不能为空</string>
+    <string name="err_bad_amount">请输入正确的金额，例如 12.34</string>
+    <string name="err_locked_write">账本已加密且未解锁，写不进去。请先输入口令。</string>
+    <string name="err_no_type">请先选择项目类型</string>
+
+    <!-- 记一笔 / 编辑 -->
+    <string name="title_edit">记一笔</string>
+    <string name="title_edit_existing">编辑记录</string>
+    <string name="label_date">日期</string>
+    <string name="label_today">今天</string>
+    <string name="hint_name">项目名称，如 早餐</string>
+    <string name="hint_amount">金额（元）</string>
+    <string name="direction_expense">支出</string>
+    <string name="direction_income">收入</string>
+    <string name="label_type">类型</string>
+    <string name="new_type">新建</string>
+    <string name="dlg_new_type">新建项目类型</string>
+    <string name="dlg_new_type_hint">类型名称，如 宠物开销</string>
+    <string name="saved_inserted">已记一笔</string>
+    <string name="saved_updated">已修改</string>
+    <string name="delete_this">删除本条</string>
+    <string name="deleted">已删除</string>
+
+    <!-- 查账 -->
+    <string name="title_search">查账</string>
+    <string name="all_types">全部类型</string>
+    <string name="pick_types">选择类型</string>
+    <string name="types_selected">%1$d 类</string>
+    <string name="hint_keyword">名称关键字</string>
+    <string name="only_income">只看收入</string>
+    <string name="only_expense">只看支出</string>
+    <string name="search_summary">%1$d 条，合计 %2$s 元（收入 %3$s，支出 %4$s）</string>
+    <string name="search_empty">这个条件下没有记录</string>
+    <string name="confirm_delete_title">删除记录</string>
+    <string name="confirm_delete_message">%1$s %2$s %3$s 元\n确定删除？</string>
+    <string name="sort_newest">最新在前</string>
+    <string name="sort_oldest">最早在前</string>
+
+    <!-- 现金流量表 -->
+    <string name="title_status">现金流量表</string>
+    <string name="status_header">%1$s 到 %2$s</string>
+    <string name="status_income">总收入 = %1$s 元</string>
+    <string name="status_expense">总支出 = %1$s 元</string>
+    <string name="status_net">净收入 = %1$s 元</string>
+    <string name="status_none">（该区间没有数据）</string>
+
+    <!-- 税负 -->
+    <string name="title_tax">税负估算</string>
+    <string name="tax_total">纳税总额 ≈ %1$s 元</string>
+    <string name="tax_rate">税负率 ≈ %1$s%%（占本区间总收入）</string>
+    <string name="tax_rate_na">本区间没有收入数据，税负率无法计算</string>
+    <string name="tax_detail">增值税（6%%/9%%/13%% 三档）：%1$s 元\n燃油税：%2$s 元\n城市维护建设税：%3$s 元\n教育费附加：%4$s 元\n企业所得税（估算）：%5$s 元\n直接缴纳的税款：%6$s 元\n\n假设：油价 9 元/升，燃油税 1.52 元/升，税率分类沿用原程序的硬编码名单。</string>
+
+    <!-- CPI -->
+    <string name="title_cpi">个人CPI</string>
+    <string name="cpi_from_year">起始年份</string>
+    <string name="cpi_to_year">结束年份</string>
+    <string name="cpi_calc">计算</string>
+    <string name="cpi_err_year">请输入四位年份，且起始年份小于结束年份</string>
+    <string name="cpi_col_year">年度</string>
+    <string name="cpi_col_cpi">支出涨幅</string>
+    <string name="cpi_col_income">收入涨幅</string>
+    <string name="cpi_avg">年均支出涨幅 %1$s，年均收入涨幅 %2$s</string>
+    <string name="cpi_note">口径与原程序一致：支出总额剔除「给李娅钱」，涨幅为当年对上一年的比值减一。</string>
+    <string name="cpi_no_data">无数据</string>
+
+    <!-- 类型管理 -->
+    <string name="title_types">类型管理</string>
+    <string name="type_add">新增类型</string>
+    <string name="type_rename">改名</string>
+    <string name="type_delete">删除</string>
+    <string name="type_move_records">把记录挪到…</string>
+    <string name="type_summary">%1$d 条，合计 %2$s 元</string>
+    <string name="type_delete_last">%1$s 条，合计 %2$s 元。这个类型还没有记录，可直接删除。</string>
+    <string name="type_exists">已有同名类型</string>
+    <string name="type_renamed">已改名</string>
+    <string name="type_deleted">已删除</string>
+    <string name="type_moved">已把记录并入 %1$s，并删除原类型</string>
+    <string name="dlg_rename">类型改名</string>
+
+    <!-- 数据 -->
+    <string name="title_data">数据导入导出</string>
+    <string name="db_path">数据库位置：%1$s</string>
+    <string name="db_stats">%1$d 条记录，%2$d 个类型，最早 %3$s，最新 %4$s</string>
+    <string name="db_empty">当前数据库是空的。可以从下面的文件导入你原来的 money.db。</string>
+    <string name="import_db">从文件导入 money.db</string>
+    <string name="import_db_confirm">导入会用所选文件覆盖 App 内的数据库（覆盖前会自动留一份 money.db.preimport）。确定继续？</string>
+    <string name="import_db_ok">导入成功：%1$d 条记录</string>
+    <string name="import_db_not_moneydb">这个文件里没有 Income / IncomeType 表，不像 money.db</string>
+    <string name="import_db_failed">导入失败：%1$s</string>
+    <string name="backup_now">立即备份</string>
+    <string name="backup_ok">已备份并校验：%1$s</string>
+    <string name="backup_failed">备份失败：%1$s</string>
+    <string name="backup_never">还没有备份记录。</string>
+    <string name="backup_auto">改动后自动备份</string>
+    <string name="backup_location_title">备份保存位置</string>
+    <string name="backup_location_change">更改…</string>
+    <string name="backup_target_media">下载目录 Download/PyMoney（默认，Termux 好读）</string>
+    <string name="backup_target_tree">我自己选一个文件夹（记住它）</string>
+    <string name="backup_target_single">每次备份都问我存到哪</string>
+    <string name="backup_target_chooser">备份存到哪里？</string>
+    <string name="backup_target_set">备份位置：%1$s</string>
+    <string name="backup_target_lost">原来选的文件夹授权已经没了，请重新选一次</string>
+    <string name="backup_tree_no_data">这个文件管理器没有把选中的目录交回来（可能是它不支持「选文件夹」这种授权），备份位置没变</string>
+    <string name="backup_tree_denied">这个文件管理器不肯给「长期记住」的授权（%1$s），备份位置没变，仍是下面这个</string>
+    <string name="backup_tree_try_single">换用「每次都问我」：备份时弹系统保存框，能进它能看到的所有目录</string>
+    <string name="backup_tree_try_again">再试一次选文件夹</string>
+    <string name="backup_tree_giveup">先不动它</string>
+    <string name="backup_last_ok">上次备份 %1$s ✅ %2$d 条记录</string>
+    <string name="backup_last_failed">上次备份 %1$s ❌：%2$s</string>
+    <string name="backup_no_auto_support">「每次都问我」没法自动备份，改动后请手动点一次「立即备份」</string>
+    <string name="export_plain_db">导出明文 money-plain.db（给 Termux 覆盖用）</string>
+    <string name="export_plain_db_confirm">下一步会弹系统的「另存为」，位置你自己选。写出去的是一份能被外部直接读开的明文库（不覆盖加密备份 money.db）。确定继续？</string>
+    <string name="termux_hint">注意：App 用的库在 /data/data/com.pymoney/databases/，和 Termux 里那份是两个不同的文件。备份只是把 App 这份拷到公共目录，老程序不会自动读它，还要在 Termux 里覆盖一次：</string>
+    <string name="termux_command">未加密：cp -v ~/storage/shared/Download/PyMoney/money.db ~/pymoney/money.db</string>
+    <string name="termux_command_plain">开了加密：cp -v ~/storage/shared/Download/PyMoney/money-plain.db ~/pymoney/money.db</string>
+    <string name="export_csv">导出 CSV（另存为…）</string>
+    <string name="import_csv">导入 CSV</string>
+    <string name="csv_exported">已导出 %1$d 条到 %2$s</string>
+    <string name="csv_imported">已导入 %1$d 条记录（类型名不存在会自动新建）</string>
+    <string name="csv_format">CSV 格式：Time,Name,Amount,TypeName，时间 YYYYMMDD，金额单位元、支出为负。</string>
+
+    <!-- 图表 -->
+    <string name="title_charts">统计图表</string>
+    <string name="chart_save">存到相册</string>
+    <string name="chart_share">分享</string>
+    <string name="chart_saved">已保存到相册 Pictures/PyMoney</string>
+    <string name="chart_save_failed">保存失败：%1$s</string>
+    <string name="chart_no_data">这个条件下没有可绘制的数据</string>
+
+    <!-- 安全与加密 -->
+    <string name="title_security">安全与加密</string>
+    <string name="sec_state_title">当前状态</string>
+    <string name="sec_plain">明文库：事项名和类别名直接可读。</string>
+    <string name="sec_locked">已加密，未解锁。要看记录、改记录，先输入口令。</string>
+    <string name="sec_unlocked">已加密，本次使用中已解锁。</string>
+    <string name="sec_stats">密文 %1$d 条，仍是明文 %2$d 条（事项名 %3$d / 类别名 %4$d）。</string>
+    <string name="sec_recovery_set">已设恢复码。</string>
+    <string name="sec_recovery_none">没有恢复码：忘入口令且解不开 DEK 时，这些数据永久读不回来。</string>
+    <string name="sec_mixed">上次迁移中断在 ID %1$d，库里是混合态。点「接着迁移」跑完即可，中途界面照常能用。</string>
+    <string name="sec_switch_title">加密开关</string>
+    <string name="sec_switch_hint">只加密文字：事项名 Income.Name 与类别名 IncomeType.TypeName。时间、金额、类型 ID 保持明文，所以税负、CPI、图表、汇总在加密后逐值不变。</string>
+    <string name="sec_enable">开启加密</string>
+    <string name="sec_disable">关闭加密（还原成明文）</string>
+    <string name="sec_resume">接着迁移剩下的 %1$d 条</string>
+    <string name="sec_pass_title">口令</string>
+    <string name="sec_pass_hint">口令只用来解开数据密钥 DEK，本身以任何形式都不落盘：不存 SharedPreferences、不写日志、不进历史。杀掉进程就要重新输。改口令只重新包裹一次 DEK，一万两千条记录一个字节都不用重算。</string>
+    <string name="sec_unlock">输入口令解锁</string>
+    <string name="sec_lock">立即锁定</string>
+    <string name="sec_change">改口令</string>
+    <string name="sec_recovery">设置/更换恢复码</string>
+    <string name="sec_old_pass">请输入现在的口令</string>
+    <string name="sec_set_pass">请设置记账口令（至少 6 个字符）</string>
+    <string name="sec_new_pass">请输入新口令（至少 6 个字符）</string>
+    <string name="sec_new_pass_again">再输一次新口令</string>
+    <string name="sec_pass_unmatched">两次输入不一致</string>
+    <string name="sec_pass_short">口令太短，至少 6 个字符</string>
+    <string name="sec_pass_empty">口令不能为空</string>
+    <string name="sec_pass_wrong">口令不对</string>
+    <string name="sec_pass_changed">已改口令，数据没有重算</string>
+    <string name="sec_locked_now">已锁定，界面上的明文随之消失</string>
+    <string name="sec_recovery_title">恢复码</string>
+    <string name="sec_recovery_body">把它抄在纸上或存进密码本，然后可以点「我已抄好，关掉」。忘记记账口令时，在口令框下方点「用恢复码」就能解开。设置新的会让旧的立刻作废；恢复码本身不落盘，关掉这个窗口 App 就再也看不到它。</string>
+    <string name="sec_recovery_close">我已抄好，关掉</string>
+    <string name="sec_recovery_saved">恢复码已写好，旧的那张立刻作废</string>
+    <string name="sec_op_failed">口令不对，或者当前状态不能做这个操作</string>
+    <string name="sec_recovery_choice_title">要不要恢复码？</string>
+    <string name="sec_recovery_choice_yes">生成一张恢复码，我抄下来（推荐）</string>
+    <string name="sec_recovery_choice_no">不需要（我已确认：忘口令＝数据永久不可读）</string>
+    <string name="sec_copy_title">迁移前留下的明文副本</string>
+    <string name="sec_copy_none">没有明文副本。</string>
+    <string name="sec_copy_days">副本在 App 私有目录（外部应用读不到），%1$s，共 %2$s。</string>
+    <string name="sec_copy_age_now">刚生成</string>
+    <string name="sec_copy_age_days">%1$d 天前生成</string>
+    <string name="sec_copy_auto">满 %1$d 天会自动删除。它是迁移唯一一次「一条 SQL 改一万两千行」的退路，也是唯一一份和加密目的对冲的明文，别长期留着。</string>
+    <string name="sec_copy_export">删之前先导出</string>
+    <string name="sec_copy_delete">现在就删</string>
+    <string name="sec_copy_deleted">明文副本已删除</string>
+    <string name="sec_copy_missing">副本已经不在了</string>
+    <string name="sec_enable_need_backup">开启加密前要先有一份通过回读校验的备份。现在备份一次吗？</string>
+    <string name="sec_enable_backup_failed">备份没通过校验，就不开加密了：%1$s</string>
+    <string name="sec_enable_confirm">加密后：用 sqlite3 或别的程序直接打开这个库，只能看到 enc:v1: 开头的乱码；Termux 里的老程序读不了，需要在 App 里「导出明文 money-plain.db」。忘记口令又没有恢复码，数据永久读不回来，没有任何后门。确定开启？</string>
+    <string name="sec_disable_confirm">这会把全部密文还原成明文并删掉密钥信封，之后外部程序又能直接读开这个库。确定关闭加密？</string>
+    <string name="sec_busy">正在迁移，别关页面…… %1$d/%2$d</string>
+    <string name="sec_migrate_failed">迁移失败：%1$s</string>
+    <string name="sec_migrate_done">加密已开启：%1$s</string>
+    <string name="sec_plain_done">已还原成明文：%1$s</string>
+    <string name="sec_needs_unlock">要先解锁（这个动作需要看到明文）</string>
+    <string name="sec_nothing_to_migrate">全部已经是密文了，不用迁移</string>
+    <string name="sec_backing_up">%1$s：正在备份，请稍候……</string>
+    <string name="sec_writing">正在写到另选的位置……</string>
+    <string name="sec_backup_failed_title">备份没成功</string>
+    <string name="sec_backup_failed_ask">备份没成功。改用系统「另存为」写一份吗？\n那条路你自己刚试过是通的（导出 CSV 就是这么写的），写完同样会回读校验。\n\n失败原因：%1$s</string>
+    <string name="sec_backup_failed_no">先不另存为</string>
+    <string name="sec_backup_failed_yes">改用另存为</string>
+    <string name="sec_save_as_title">另存为备份</string>
+    <string name="sec_limits_title">它能防什么、防不住什么</string>
+    <string name="sec_limits">防的是：库文件被拷走或捡到、共享存储里的备份被别的 App 读到、有人用 sqlite3 直接翻明文。防不住：手机 root 后从内存里取密钥；正在使用时库里时间/金额/类型 ID 全是明文；密文长度等于明文长度；同名事项出现的次数与时间间隔；截屏、通知、剪贴板。</string>
+
+    <!-- 小组件 -->
+    <string name="widget_hint">点我记一笔</string>
+
+    <!-- 口令输入 -->
+    <string name="show_pass">显示口令</string>
+
+    <!-- 外观 -->
+    <string name="title_appearance">外观</string>
+    <string name="appearance_section">界面配色</string>
+    <string name="appearance_auto">跟随系统（系统切深色，App 跟着变）</string>
+    <string name="appearance_light">始终浅色</string>
+    <string name="appearance_dark">始终深色</string>
+    <string name="appearance_now_auto">当前：跟随系统（系统现在是%1$s）。</string>
+    <string name="appearance_now_light">当前：始终浅色，系统切到深色时这一页也不变。</string>
+    <string name="appearance_now_dark">当前：始终深色。</string>
+    <string name="appearance_old_system">这台机器的 Android 低于 12，没有「只给一个 App 指定明暗」的接口，只能跟随系统；系统现在是%1$s。</string>
+    <string name="appearance_limits">明暗只作用于 App 自己的界面：卡片、文字、自绘图表，连「存到相册」导出的图也按当前配色画。桌面小组件由系统决定，可能和这里选的不一致。</string>
+</resources>
